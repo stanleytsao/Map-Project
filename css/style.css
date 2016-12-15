@@ -1,4 +1,33 @@
+.container {
+	display: flex;
+}
+
+.nav {
+	width: 20%;
+	padding: 20px;
+}
+
+.main {
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+}
+
 #map {
-        width: 600px;
-        height: 600px;
-      }
+    height: 90%;
+}
+
+.content {
+	display: none;
+}
+
+.show {
+	display: flex;
+	flex-direction: column;
+	padding: 2px;
+}
+
+.show li {
+	box-shadow: -2px 2px 2px #000;
+	padding: 2px;
+}
