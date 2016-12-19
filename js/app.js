@@ -3,17 +3,43 @@ function viewModel() {
 
  	schoolOptions = ko.observableArray(allSchools);
 
- 	selectedState = ko.observable('East Coast');
+ 	selectedState = ko.observable();
 
  	self.filterSchools = function() {
 
- 		var toggleSchools = allSchools.forEach(function(obj, key) {
- 			if (obj.state !== selectedState()) {
-				$('#schoolList')["0"].children[key].className = 'hide';
+ 		var schools = $('#schoolList')["0"];
+
+ 		// if(selectedState() === 'All') {
+			// console.log(schools.children.length);
+
+ 		// } else {
+
+ 			var toggleSchools = allSchools.forEach(function(obj, key) {
+ 			
+ 			
+ 			if (selectedState() === 'All') {
+ 				schools.children[key].className = 'show';
+ 				
+ 			} else if (obj.state === selectedState()) {
+				schools.children[key].className = 'show';
+				(function showMarker(key) {
+ 					for (var i = 0; i < markers.length; i++) {
+ 						markers[key].setMap(map);
+ 						bounds.extend(markers[i].position);
+ 						map.fitBounds(bounds);
+ 					}
+ 				}(key));
  			} else {
- 				$('#schoolList')["0"].children[key].className = 'show';
+ 				schools.children[key].className = 'hide';
+ 				(function hideMarker(key) {
+ 					for (var i = 0; i < markers.length; i++) {
+ 						markers[key].setMap(null);
+ 					}
+ 				}(key));
  			}
- 		});
+ 			});
+
+ 		// };
 
  		// var toggleSchools = allSchools.forEach(function(obj, key) {
  		// 	if (obj.state !== selectedState()) {

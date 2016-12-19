@@ -8,9 +8,7 @@
 	<div class="container">
 		<div class="nav">
 
-				<select id="stateList" data-bind="options: states, value: selectedState, valueAllowUnset: true, event: {change: filterSchools}"></select>
-			
-			<p>Schools in <strong data-bind="text: selectedState"></strong></p>
+			<select id="stateList" data-bind="options: states, value: selectedState, event: {change: filterSchools}"></select>
 			
 			<ul id="schoolList" data-bind="foreach: schoolOptions">
 				<li data-bind="text: title, css: 'show'"></li>
@@ -24,7 +22,7 @@
 	</div>
 	<script src="js/lib/jquery-3.1.1.min.js"></script>
 	<script src="js/lib/knockout-3.4.1.js"></script>
-	<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgTDNx-Zx52s-706wNeeO2sABbA6kNluY&callback=initMap"></script> -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgTDNx-Zx52s-706wNeeO2sABbA6kNluY&callback=initMap"></script>
 	<script src="js/model/schools.js"></script>
 	<script src="js/views/list.js"></script>
 	<script src="js/views/map.js"></script>

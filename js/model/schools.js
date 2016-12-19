@@ -1,4 +1,5 @@
 var states = ko.observableArray([
+  'All',
   'Illinois',
   'Indiana',
   'Ohio',

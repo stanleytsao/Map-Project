@@ -1,19 +1,37 @@
+var markers = [];
+
+var map, bounds;
+
 function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
-    center: schools[1].location
+    center: allSchools[4].location
   });
 
-  for (var i = 0; i < schools.length; i++) {
-    var position = schools[i].location;
-    var title = schools[i].title;
-    var state = schools[i].state;
+  // var largeInfoWindow = new google.maps.InfoWindow();
+
+  bounds = new google.maps.LatLngBounds();
+
+  for (var i = 0; i < allSchools.length; i++) {
+    var position = allSchools[i].location;
+    var title = allSchools[i].title;
+    var state = allSchools[i].state;
 
     var marker = new google.maps.Marker({
       position: position,
       title: title,
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP,
+      id: i
     });
+
+    markers.push(marker);
+
+    bounds.extend(marker.position);
+
+    // marker.addListener('click', function() {
+    //   populateInfoWindown(this, largeInfoWindow);
+    // });
     
     function info() {
 
@@ -33,7 +51,12 @@ function initMap() {
 
     }
     info();
+
+    
   };
+
+map.fitBounds(bounds);
+
 };
 
 
