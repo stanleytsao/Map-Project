@@ -29,13 +29,13 @@ function initMap() {
 
     bounds.extend(marker.position);
 
-    // marker.addListener('click', function() {
-    //   populateInfoWindown(this, largeInfoWindow);
-    // });
+    marker.addListener('click', function() {
+      populateInfoWindown(this, largeInfoWindow);
+    });
     
-    function info() {
+    function info(i) {
 
-      var contentString = '<div class="infowindow"><strong class="schoolName">' + title + '</strong><br>State: ' + state + '<img src="img/tom.png" style="width:100px;"></div>'
+      var contentString = '<div class="infowindow"><strong class="schoolName">' + title + '</strong><br><span>' + state + '</span><br><img src="http://lorempixel.com/100/100/city/' + i + '"><br><span>description</span></div>'
 
       var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -50,7 +50,7 @@ function initMap() {
       });
 
     }
-    info();
+    info(i);
 
     
   };

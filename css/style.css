@@ -1,10 +1,16 @@
+.button:hover span {
+	display: block;
+}
+
 .container {
 	display: flex;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .nav {
 	width: 20%;
 	padding: 20px;
+	text-align: center;
 }
 
 .main {
@@ -17,10 +23,31 @@
     height: 80%;
 }
 
-.content {
-	display: none;
+#stateList {
+	width: calc(50%);
 }
 
+#schoolList {
+	padding: 5px;
+}
+
+#schoolList button {
+	padding: 20px 5px;
+	font-weight: bold;
+	width: 100%;
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
+#schoolList button:hover {
+	border-radius: 5px;
+}
+
+#schoolList button:hover .container {
+	background-color: black;
+}
+
+/*For List of Schools*/
 .hide {
 	display: none;
 }
@@ -29,3 +56,4 @@
 	display: block;
 	padding: 5px;
 }
+/* --- */

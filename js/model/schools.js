@@ -17,7 +17,8 @@ var allSchools = [
   {
     title : 'Rutgers University',
     location : {lat: 40.5014869, lng: -74.44705359999999},
-    state : 'New Jersey'
+    state : 'New Jersey',
+    link : 'test.com'
   },
   {
     title : 'George Mason University',
