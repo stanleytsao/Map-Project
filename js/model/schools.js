@@ -2,15 +2,10 @@ var states = ko.observableArray([
   'All',
   'Illinois',
   'Indiana',
-  'Ohio',
-  'New York',
-  'Pennsylvania',
   'New Jersey',
-  'Delaware',
-  'Maryland',
-  'Washington D.C.',
+  'Pennsylvania',
   'Virginia',
-  'North Carolina',
+  'Washington D.C.',
 ]);
 
 var allSchools = [

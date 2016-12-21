@@ -1,61 +1,44 @@
 function viewModel() {
     var self = this;
 
-    schoolOptions = ko.observableArray(allSchools);
-
+    schoolOptions = ko.observableArray();
     selectedState = ko.observable();
-
-
-// -----------------
- //    wikiLinks = [];
- //    setTimeout(function(){
- //    	allSchools.forEach(function(k) {
- //    		wikiLinks.push(k.link);
- //    	})
- //    	var list = $('#schoolList');
-	// for (var i = 0; i < list[0].children.length; i++) {
-	// 	var span = list["0"].children[i];
-	// 	var str = '<p>test</p>';
-	// 	// span = str;
-	// 	console.log(span);
-	// 	console.log(list);
-
-	// }
-	// }, 5000);
-
-// -----------------
+    selectedSchool = ko.observable();
+	
+	allSchools.forEach(function(obj, key) {
+    	schoolOptions.push(allSchools[key]);
+    });
 
 // Filters list of schools in Nav based on selected State
     self.filterSchools = function() {
 
-        var schools = $('#schoolList')["0"];
-
-        var toggleSchools = allSchools.forEach(function(obj, key) {
-            if (selectedState() === 'All') {
-                schools.children[key].className = 'show';
-                markers[key].setMap(map);
-            } else if (obj.state === selectedState()) {
-                schools.children[key].className = 'show';
-                (function showMarker(key) {
-                    for (var i = 0; i < markers.length; i++) {
-                        markers[key].setMap(map);
-                        bounds.extend(markers[i].position);
-                        map.fitBounds(bounds);
-                    }
-                }(key));
-            } else {
-                schools.children[key].className = 'hide';
-                (function hideMarker(key) {
-                    for (var i = 0; i < markers.length; i++) {
-                        markers[key].setMap(null);
-                    }
-                }(key));
-            }
+    	// Resets list of schoolOptions array and all markers
+        schoolOptions.removeAll();
+        allSchools.forEach(function(obj, key) {
+			schoolOptions.push(allSchools[key]);
+			markers[key].setMap(map);
         });
+
+        // Removes school listings and markers from NOT selected states
+        allSchools.forEach(function(obj, key) {
+            if (selectedState() !== 'All') {
+            	if (obj.state !== selectedState()) {
+            		schoolOptions.remove(obj);
+            		markers[key].setMap(null);
+            	}
+            };
+        });
+
     };
 
+// Highlights the button and the marker
+	self.highlight = function() {
+		console.log(selectedSchool);
+		console.log(selectedSchool());
+
+	};
+
 };
-setTimeout(function(){
-	ko.applyBindings(new viewModel());
-}, 5000);
+
+ko.applyBindings(new viewModel());
 

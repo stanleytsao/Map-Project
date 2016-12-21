@@ -3,18 +3,19 @@ var markers = [];
 var map, bounds;
 
 function initMap() {
-  // Load map
+  // Load new map
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
     center: allSchools[4].location
   });
 
   bounds = new google.maps.LatLngBounds();
+  var largeInfowindow = new google.maps.InfoWindow();
 
   for (var i = 0; i < allSchools.length; i++) {
     var position = allSchools[i].location;
     var title = allSchools[i].title;
-    var state = allSchools[i].state;
+    // var state = allSchools[i].state;
 
     // Create Markers
     var marker = new google.maps.Marker({
@@ -25,46 +26,31 @@ function initMap() {
       id: i
     });
 
+    // Add marker into markers array
     markers.push(marker);
 
-    bounds.extend(marker.position);
-
-    // Animate markers on click
-    marker.addListener('click', toggleBounce);
-
-    function toggleBounce() {
-      if (this.getAnimation() !== null) {
-        this.setAnimation(null);
-      } else {
-        this.setAnimation(google.maps.Animation.BOUNCE);
-      }
-    };
-    
-    // Create info window on hover
-    function info(i) {
-
-      var contentString = '<div class="infowindow"><strong class="schoolName">' + title + '</strong><br><span>' + state + '</span><br><img src="http://lorempixel.com/100/100/city/' + i + '"><br><span>description</span></div>'
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString
-      });
-
-      marker.addListener('mouseover', function() {
-        infowindow.open(map, this);
-      });
-
-      marker.addListener('mouseout', function() {
-        infowindow.close(map, this);
-      });
-
-    }
-    info(i);
-
-    
+    // Create info window on click
+    marker.addListener('click', function() {
+      populateInfoWindow(this, largeInfowindow);
+    });
+    bounds.extend(markers[i].position);
   };
-
-map.fitBounds(bounds);
-
+  
+  // Extend the boundaries of the map for each marker
+  map.fitBounds(bounds);
 };
 
+// Toggles info window to show only for selected marker
+function populateInfoWindow(marker, infowindow) {
+  // Check to make sure the infowindow is not already opened on this marker.
+  if (infowindow.marker != marker) {
+    infowindow.marker = marker;
+    infowindow.setContent('<div><strong>' + marker.title + '</strong><br>IMAGE<br>wikipediaLink</div>');
+    infowindow.open(map, marker);
+    // Make sure the marker property is cleared if the infowindow is closed.
+    infowindow.addListener('closeclick',function(){
+      infowindow.setMarker(null);
+    });
+  };
+};
 

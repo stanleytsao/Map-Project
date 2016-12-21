@@ -10,10 +10,8 @@
 			<span>Filter by state:</span>
 			<select id="stateList" data-bind="options: states, value: selectedState, event: {change: filterSchools}"></select>
 			<ul id="schoolList" data-bind="foreach: schoolOptions">
-				<button class="button">
-					<span data-bind="text: title, css: 'show'"></span>
-					<p class="hide" data-bind="text: state"></p>
-					<a class="hide" data-bind="attr: {href : link}">Wikipedia Link</a>
+				<button data-bind="click: $parent.highlight, value: $parent.selectedSschool">
+					<span data-bind="text: title"></span>
 				</button>
 			</ul>
 		</div>
@@ -27,7 +25,6 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgTDNx-Zx52s-706wNeeO2sABbA6kNluY&callback=initMap"></script>
 	<script src="js/model/schools.js"></script>
 	<script src="js/model/wiki.js"></script>
-	<script src="js/views/list.js"></script>
 	<script src="js/views/map.js"></script>
 	<script async defer src="js/app.js"></script>
 </body>
