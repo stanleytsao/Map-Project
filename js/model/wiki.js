@@ -1,7 +1,4 @@
 // Wikipedia API
-var articles = [];
-
-// load wiki link for all schools
 var searchWiki = allSchools.forEach(function(obj, key) {
 
     var search = allSchools[key].title;
@@ -15,7 +12,7 @@ var searchWiki = allSchools.forEach(function(obj, key) {
           var wikiTitle = response[1][0];
           var wikiLink = response[3][0];
 
-          articles.push({title: wikiTitle, link : wikiLink})
+          allSchools[key].link = wikiLink;
 
       }
     });

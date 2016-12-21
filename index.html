@@ -12,10 +12,8 @@
 			<ul id="schoolList" data-bind="foreach: schoolOptions">
 				<button class="button">
 					<span data-bind="text: title, css: 'show'"></span>
-					<span class="hide">
-						<!-- <a data-bind="attr: {href: link}">Link 1</a><br>
-						<a data-bind="attr: {href: wikiData}">Link 2</a> -->
-					</span>
+					<p class="hide" data-bind="text: state"></p>
+					<a class="hide" data-bind="attr: {href : link}">Wikipedia Link</a>
 				</button>
 			</ul>
 		</div>
@@ -31,6 +29,6 @@
 	<script src="js/model/wiki.js"></script>
 	<script src="js/views/list.js"></script>
 	<script src="js/views/map.js"></script>
-	<script src="js/app.js"></script>
+	<script async defer src="js/app.js"></script>
 </body>
 </html>

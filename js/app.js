@@ -5,7 +5,25 @@ function viewModel() {
 
     selectedState = ko.observable();
 
-    console.log(articles);
+
+// -----------------
+ //    wikiLinks = [];
+ //    setTimeout(function(){
+ //    	allSchools.forEach(function(k) {
+ //    		wikiLinks.push(k.link);
+ //    	})
+ //    	var list = $('#schoolList');
+	// for (var i = 0; i < list[0].children.length; i++) {
+	// 	var span = list["0"].children[i];
+	// 	var str = '<p>test</p>';
+	// 	// span = str;
+	// 	console.log(span);
+	// 	console.log(list);
+
+	// }
+	// }, 5000);
+
+// -----------------
 
 // Filters list of schools in Nav based on selected State
     self.filterSchools = function() {
@@ -37,5 +55,7 @@ function viewModel() {
     };
 
 };
-ko.applyBindings(new viewModel());
+setTimeout(function(){
+	ko.applyBindings(new viewModel());
+}, 5000);
 

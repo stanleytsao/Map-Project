@@ -1,5 +1,13 @@
-.button:hover span {
+.button:hover a {
 	display: block;
+}
+
+.button:hover p {
+	display: block;
+}
+
+.button:hover span {
+	font-size: 1.2em;
 }
 
 .container {

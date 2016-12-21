@@ -3,12 +3,11 @@ var markers = [];
 var map, bounds;
 
 function initMap() {
+  // Load map
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 6,
     center: allSchools[4].location
   });
-
-  // var largeInfoWindow = new google.maps.InfoWindow();
 
   bounds = new google.maps.LatLngBounds();
 
@@ -17,6 +16,7 @@ function initMap() {
     var title = allSchools[i].title;
     var state = allSchools[i].state;
 
+    // Create Markers
     var marker = new google.maps.Marker({
       position: position,
       title: title,
@@ -29,10 +29,18 @@ function initMap() {
 
     bounds.extend(marker.position);
 
-    marker.addListener('click', function() {
-      populateInfoWindown(this, largeInfoWindow);
-    });
+    // Animate markers on click
+    marker.addListener('click', toggleBounce);
+
+    function toggleBounce() {
+      if (this.getAnimation() !== null) {
+        this.setAnimation(null);
+      } else {
+        this.setAnimation(google.maps.Animation.BOUNCE);
+      }
+    };
     
+    // Create info window on hover
     function info(i) {
 
       var contentString = '<div class="infowindow"><strong class="schoolName">' + title + '</strong><br><span>' + state + '</span><br><img src="http://lorempixel.com/100/100/city/' + i + '"><br><span>description</span></div>'
