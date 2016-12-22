@@ -10,7 +10,7 @@
 			<span>Filter by state:</span>
 			<select id="stateList" data-bind="options: states, value: selectedState, event: {change: filterSchools}"></select>
 			<ul id="schoolList" data-bind="foreach: schoolOptions">
-				<button data-bind="click: $parent.highlight, value: $parent.selectedSschool">
+				<button data-bind="click: $parent.highlight">
 					<span data-bind="text: title"></span>
 				</button>
 			</ul>

@@ -33,9 +33,15 @@ function viewModel() {
 
 // Highlights the button and the marker
 	self.highlight = function() {
-		console.log(selectedSchool);
-		console.log(selectedSchool());
-
+		
+		selectedSchool(this.title);
+		allSchools.forEach(function(obj, key) {
+			// console.log(allSchools[key].link);
+        	if (obj.title === selectedSchool()) {
+        		markers[key].setIcon('img/universityIcon.png');
+        		new google.maps.event.trigger(markers[key], 'click');
+        	};
+        });
 	};
 
 };
