@@ -48,13 +48,38 @@ function populateInfoWindow(marker, infowindow) {
     // Check to make sure the infowindow is not already opened on this marker.
     if (infowindow.marker != marker) {
         infowindow.marker = marker;
-        infowindow.setContent('<div><strong>' + marker.title + '</strong><br>IMAGE<br>wikipediaLink</div>');
-        infowindow.open(map, marker);
-        marker.setIcon('img/universityIcon.png');
-        // Make sure the marker property is cleared if the infowindow is closed.
-        infowindow.addListener('closeclick', function() {
-            infowindow.setMarker = null;
-            marker.setIcon();
-        });
+        
+        // Wikipedia API loads on click
+        var search = marker.title;
+        var wikiTitle, wikiLink;
+        var popUp = function() {
+            infowindow.setContent('<div><strong>' + search + '</strong><br><br><img src="img/' + search + '.jpg" alt="' + search + '" width="150px"><br><br>Learn more about:<br><a target="_blank" href="' + wikiLink + '">' + wikiTitle + '!</a></div>');
+            infowindow.open(map, marker);
+            marker.setIcon('img/universityIcon.png');
+            // Make sure the marker property is cleared if the infowindow is closed.
+            infowindow.addListener('closeclick', function() {
+                infowindow.setMarker = null;
+                marker.setIcon();
+            });
+        };
+        var searchWiki = function(search) {
+            var wikiTimeout = setTimeout(function() {
+                wikiTitle = "Failed to load Wikipedia API!";
+                popUp();
+            }, 3000);
+            $.ajax({
+                url: "http://en.wikipedia.org/w/api.php?action=opensearch&format=json&callback=wikiCallback&limit=10&search=" + search,
+                type: 'POST',
+                dataType: "jsonp",
+                success: function(response) {
+                    clearTimeout(wikiTimeout);
+                    wikiTitle = response[1][0];
+                    wikiLink = response[3][0];
+                    popUp();
+                }
+            });
+        };
+        searchWiki(search);
+        
     };
 };

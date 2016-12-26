@@ -34,7 +34,7 @@ function viewModel() {
     };
 
     // Highlights the button and the marker
-    self.highlight = function(location) {
+    self.highlight = function() {
 
         self.selectedSchool(this.title);
         allSchools.forEach(function(obj, key) {
