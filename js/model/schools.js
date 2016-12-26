@@ -10,9 +10,9 @@ var states = ko.observableArray([
 
 var allSchools = [
   {
-    title : 'Rutgers University',
-    location : {lat: 40.5014869, lng: -74.44705359999999},
-    state : 'New Jersey',
+    title : 'Carnegie Mellon University',
+    location : {lat: 40.4434658, lng: -79.9434567},
+    state : 'Pennsylvania',
     link : ''
   },
   {
@@ -34,20 +34,8 @@ var allSchools = [
     link : ''
   },
   {
-    title : 'Carnegie Mellon University',
-    location : {lat: 40.4434658, lng: -79.9434567},
-    state : 'Pennsylvania',
-    link : ''
-  },
-  {
     title : 'Northwestern University',
     location : {lat: 42.0505569, lng: -87.67972809999999},
-    state : 'Illinois',
-    link : ''
-  },
-  {
-    title : 'University of Chicago',
-    location : {lat: 41.7895697, lng: -87.60091480000001},
     state : 'Illinois',
     link : ''
   },
@@ -61,6 +49,18 @@ var allSchools = [
     title : 'Purdue University',
     location : {lat: 40.4282261, lng: -86.9144194},
     state : 'Indiana',
+    link : ''
+  },
+  {
+    title : 'Rutgers University',
+    location : {lat: 40.5014869, lng: -74.44705359999999},
+    state : 'New Jersey',
+    link : ''
+  },
+  {
+    title : 'University of Chicago',
+    location : {lat: 41.7895697, lng: -87.60091480000001},
+    state : 'Illinois',
     link : ''
   },
   {

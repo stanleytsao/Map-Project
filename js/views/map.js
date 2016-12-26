@@ -31,6 +31,9 @@ function initMap() {
 
     // Create info window on click
     marker.addListener('click', function() {
+      markers.forEach(function(obj, key) {
+        markers[key].setIcon();
+      });
       populateInfoWindow(this, largeInfowindow);
     });
     bounds.extend(markers[i].position);
@@ -47,9 +50,11 @@ function populateInfoWindow(marker, infowindow) {
     infowindow.marker = marker;
     infowindow.setContent('<div><strong>' + marker.title + '</strong><br>IMAGE<br>wikipediaLink</div>');
     infowindow.open(map, marker);
+    marker.setIcon('img/universityIcon.png');
     // Make sure the marker property is cleared if the infowindow is closed.
     infowindow.addListener('closeclick',function(){
-      infowindow.setMarker(null);
+      infowindow.setMarker = null;
+      marker.setIcon();
     });
   };
 };
