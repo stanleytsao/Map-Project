@@ -2,6 +2,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Map Project</title>
+	<style>
+		@media screen and (max-width:680px) {
+			.nav {
+				position: absolute;
+				left: -60%;
+				width: 40%;
+			}
+		}
+		@media screen and (min-width:680px) {
+			.nav { width: 20%; }
+			.toggleNav { display: none; }
+		}
+	</style>
 	<link rel="stylesheet" href="css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -17,6 +30,9 @@
 			</ul>
 		</div>
 		<div class="main">
+
+		<span class="toggleNav" data-bind="click: toggleNav">☰</span>
+
 			<h1>Map Project</h1>
 			<div id="map"></div>
 		</div>

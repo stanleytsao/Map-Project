@@ -1,12 +1,23 @@
+.toggleNav {
+	float: right;
+	font-size: 2em;
+	cursor: pointer;
+}
+
+.toggleNav:hover {
+	text-shadow: 0 0 2px #333
+}
+
 .container {
 	display: flex;
-	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	font-family: sans-serif;
 }
 
 .nav {
-	width: 20%;
 	padding: 20px;
 	text-align: center;
+	z-index: 1;
+	background-color: #fff;
 }
 
 .main {
@@ -39,13 +50,3 @@
 	border-radius: 5px;
 }
 
-/*For List of Schools*/
-.hide {
-	display: none;
-}
-
-.show {
-	display: block;
-	padding: 5px;
-}
-/* --- */
