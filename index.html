@@ -11,12 +11,11 @@
 				width: 40%;
 			}
 			.main { width: 100%; }
-			.dropDown { margin-top: 20px; }
 		}
 		@media screen and (min-width:680px) {
-			.nav { width: 20%; }
+			.nav { width: 250px; }
 			.toggleNav { display: none; }
-			.main { width: 80%; }
+			.main { width: calc(100% - 250px); }
 			.dropDown { margin-top: 0; }
 		}
 	</style>
@@ -25,7 +24,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="nav">
+		<nav class="nav">
 			<div class="dropDown">Filter by state:
 				<select id="stateList" data-bind="options: states, value: selectedState, event: {change: filterSchools}"></select>
 			</div>
@@ -34,14 +33,12 @@
 					<span data-bind="text: title"></span>
 				</button>
 			</ul>
-		</div>
-		<div class="main">
-
-		<span class="toggleNav" data-bind="click: toggleNav">☰</span>
-
+		</nav>
+		<main class="main">
+			<span class="toggleNav" data-bind="click: toggleNav">☰</span>
 			<div class="header">Map Project</div>
 			<div id="map"></div>
-		</div>
+		</main>
 	</div>
 	<script src="js/lib/jquery-3.1.1.min.js"></script>
 	<script src="js/lib/knockout-3.4.1.js"></script>

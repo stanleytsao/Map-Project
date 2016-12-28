@@ -18,7 +18,7 @@ function viewModel() {
         self.schoolOptions.removeAll();
         allSchools.forEach(function(obj, key) {
             self.schoolOptions.push(allSchools[key]);
-            markers[key].setMap(map);
+            markers[key].setVisible(true);
         });
 
         // Removes school listings and markers from NOT selected states
@@ -26,7 +26,7 @@ function viewModel() {
             if (self.selectedState() !== 'All') {
                 if (obj.state !== self.selectedState()) {
                     self.schoolOptions.remove(obj);
-                    markers[key].setMap(null);
+                    markers[key].setVisible(false);
                 }
             };
         });
@@ -38,7 +38,7 @@ function viewModel() {
 
         self.selectedSchool(this.title);
         allSchools.forEach(function(obj, key) {
-            markers[key].setIcon();
+            // markers[key].setIcon();
             if (obj.title === self.selectedSchool()) {
                 new google.maps.event.trigger(markers[key], 'click');
             };
@@ -47,16 +47,18 @@ function viewModel() {
 
     // Toggle Nav bar
     self.toggleNav = function() {
-    	var nav = $('.nav');
-    	if (nav.css('left') < '0') {
-    		nav.css('left', '0');
-    	} else {
-    		nav.css('left', '-60%');
-    	};
+        var nav = $('.nav');
+        if (nav.css('left') < '0') {
+            nav.css('left', '0');
+        } else {
+            nav.css('left', '-60%');
+        };
     }
-
 };
-
 ko.applyBindings(new viewModel());
 
-
+var googleError = function() {
+    alert("Failed to load GoogleMaps API");
+    $('#map').append('<br>' + "Failed to load GoogleMaps API");
+    $('#map').css({'font-size': '3em', 'color': '#f21'})
+}
